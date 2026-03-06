@@ -38,7 +38,7 @@ moneyManager.addMoneyCallback = data => {
             moneyManager.setMessage(response.success, "Баланс пополнен");
         } else {
             console.error("Ошибка пополнения", response.error)
-            moneyManager.setMessage(false, response.error, "Ошибка пополнения");
+            moneyManager.setMessage(false, response.error);
         }
     });
 }
@@ -50,7 +50,7 @@ moneyManager.conversionMoneyCallback = data => {
             moneyManager.setMessage(response.success, "Конвертация валюты выполнена");
         } else {
             console.error("Ошибка конвертации", response.error)
-            moneyManager.setMessage(false, response.error, "Ошибка конвертации");
+            moneyManager.setMessage(false, response.error);
         }
     });
 }
@@ -62,7 +62,7 @@ moneyManager.sendMoneyCallback = data => {
             moneyManager.setMessage(response.success, "Перевод средств выполнен");
         } else {
             console.error("Ошибка перевода", response.error)
-            moneyManager.setMessage(false, response.error, "Ошибка перевода");
+            moneyManager.setMessage(false, response.error);
         }
     });
 }
@@ -81,8 +81,9 @@ favoritesWidget.addUserCallback = data => {
             favoritesWidget.clearTable();
             favoritesWidget.fillTable(response.data);
             moneyManager.updateUsersList(response.data);
+            favoritesWidget.setMessage(response.success, "Контакт успешно добавлен в избранное");
         } else {
-            favoritesWidget.setMessage(response.success, response.error);
+            favoritesWidget.setMessage(false, response.error);
         }
     });
 }
@@ -93,8 +94,9 @@ favoritesWidget.removeUserCallback = data => {
             favoritesWidget.clearTable();
             favoritesWidget.fillTable(response.data);
             moneyManager.updateUsersList(response.data);
+            favoritesWidget.setMessage(response.success, "Контакт удален из избранного");
         } else {
-            favoritesWidget.setMessage(response.success, response.error);
+            favoritesWidget.setMessage(false, response.error);
         }
     });
 }
